@@ -1,7 +1,9 @@
+
+"use client";
 import ProductGrid from '@/components/Product/ProductGrid'
 
 // Mock data - replace with real data from your API
-const products = [
+const initialProducts = [
   {
     id: 1,
     name: 'Handcrafted Ceramic Mug',
@@ -76,30 +78,78 @@ const products = [
   }
 ]
 
+import React, { useState } from 'react'
+
 export default function Marketplace() {
+  const [emoji, setEmoji] = useState("");
+  const [products, setProducts] = useState(initialProducts);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // Call backend Gemini API route
+  async function fetchProductsByEmoji(emoji: string) {
+    setLoading(true);
+    setError("");
+    try {
+      if (!emoji) {
+        setProducts(initialProducts);
+        setLoading(false);
+        return;
+      }
+      const res = await fetch("/api/gemini", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ emoji }),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        setError(err.error || "Failed to fetch products.");
+        setProducts([]);
+      } else {
+        const data = await res.json();
+        // Expecting data.products or similar from Gemini API
+        setProducts(data.products || []);
+      }
+    } catch (e) {
+      setError('Failed to fetch products.');
+      setProducts([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row justify-between items-center mb-8">
         <h1 className="text-3xl font-bold mb-4 md:mb-0">Marketplace</h1>
-        <div className="flex space-x-4">
-          <select className="input-field w-auto">
-            <option>All Categories</option>
-            <option>Home & Kitchen</option>
-            <option>Jewelry</option>
-            <option>Fashion</option>
-            <option>Stationery</option>
-          </select>
-          <select className="input-field w-auto">
-            <option>Sort by: Featured</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-            <option>Highest Rated</option>
-          </select>
-        </div>
       </div>
-      
-      <ProductGrid products={products} />
-      
+
+      {/* Emoji input for product search */}
+      <div className="flex flex-col items-center mb-8">
+        <input
+          type="text"
+          className="input-field w-40 text-2xl text-center"
+          placeholder="🔍 Enter emoji(s)..."
+          value={emoji}
+          onChange={e => {
+            setEmoji(e.target.value);
+            fetchProductsByEmoji(e.target.value);
+          }}
+          maxLength={8}
+        />
+        <span className="text-xs text-gray-500 mt-2">
+          Try 🧵 🪡 🧶 🪆 🪔 🧺 👗 👜 🪢 🖼️ 🪘 � (mix for artisan crafts, dolls, clothes, etc)
+        </span>
+      </div>
+
+      {loading ? (
+        <div className="text-center text-lg py-12">Loading products...</div>
+      ) : error ? (
+        <div className="text-center text-red-500 py-12">{error}</div>
+      ) : (
+        <ProductGrid products={products} />
+      )}
+
       <div className="flex justify-center mt-12">
         <button className="btn-secondary">Load More</button>
       </div>

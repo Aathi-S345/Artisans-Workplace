@@ -22,8 +22,8 @@ export default async function AdminDashboardPage() {
   return (
     <div className="bg-gray-50 min-h-screen">
       <div className="p-8 bg-white border-b">
-        <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-        <p className="text-gray-600">Welcome back, Admin {session.user.name}!</p>
+        <h1 className="text-3xl font-bold">VishwaKarma Admin Dashboard</h1>
+        <p className="text-gray-600">Welcome back to VishwaKarma, Admin {session.user.name}!</p>
       </div>
       
       {/* Render the Client Component that shows the stats */}
