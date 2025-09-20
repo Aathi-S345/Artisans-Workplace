@@ -16,7 +16,7 @@ const initialProducts: Product[] = [
   {
     id: 1,
     name: 'Handcrafted Ceramic Mug',
-    image: '/placeholder-mug.jpg',
+    image: 'public/products/placeholder-mug.jpg',
     price: 24.99,
     stock: 15,
     status: 'Active',
