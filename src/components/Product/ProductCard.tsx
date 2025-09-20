@@ -4,10 +4,10 @@ import React from 'react';
 
 // (Optional but good practice) Define the shape of a single product
 interface Product {
-  id: string;
+  id: string | number;
   name: string;
   price: number;
-  imageUrl: string;
+  image: string;
   // ... any other properties
 }
 
@@ -19,7 +19,7 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="border rounded-lg overflow-hidden shadow-lg">
-      <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover" />
+  <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
       <div className="p-4">
         <h3 className="font-bold text-lg">{product.name}</h3>
         <p className="text-gray-600">${product.price}</p>
