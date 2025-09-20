@@ -26,7 +26,7 @@ export default function ArtisanDashboard() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Artisan Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-8">VishwaKarma Dashboard</h1>
       
       {/* Navigation tabs */}
       <div className="border-b border-gray-200 mb-8">

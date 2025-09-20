@@ -26,7 +26,7 @@ export const Header = () => {
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo */}
         <Link href="/" onClick={handleLinkClick} className="text-2xl font-bold text-gray-800">
-          Artisan Marketplace
+          VishwaKarma
         </Link>
 
         {/* Desktop Navigation */}
