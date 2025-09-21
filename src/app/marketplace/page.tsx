@@ -1,8 +1,11 @@
+// src/app/marketplace/page.tsx
 
 "use client";
-import ProductGrid from '@/components/Product/ProductGrid'
+import React, { useState } from 'react'; // Moved this to the top for good practice
+import ProductGrid from '@/components/Product/ProductGrid';
+import Translator from '../../components/Translator'; // 1. ADD THIS IMPORT
 
-// Mock data - replace with real data from your API
+// Mock data
 const initialProducts = [
   {
     id: 1,
@@ -78,7 +81,6 @@ const initialProducts = [
   }
 ]
 
-import React, { useState } from 'react'
 
 export default function Marketplace() {
   const [emoji, setEmoji] = useState("");
@@ -86,7 +88,6 @@ export default function Marketplace() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Call backend Gemini API route
   async function fetchProductsByEmoji(emoji: string) {
     setLoading(true);
     setError("");
@@ -107,7 +108,6 @@ export default function Marketplace() {
         setProducts([]);
       } else {
         const data = await res.json();
-        // Expecting data.products or similar from Gemini API
         setProducts(data.products || []);
       }
     } catch (e) {
@@ -122,6 +122,11 @@ export default function Marketplace() {
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row justify-between items-center mb-8">
         <h1 className="text-3xl font-bold mb-4 md:mb-0">Marketplace</h1>
+      </div>
+      
+      {/* 2. ADD THE TRANSLATOR COMPONENT HERE */}
+      <div className="my-8 p-4 border rounded-lg shadow-sm bg-gray-50">
+          <Translator />
       </div>
 
       {/* Emoji input for product search */}
@@ -138,7 +143,7 @@ export default function Marketplace() {
           maxLength={8}
         />
         <span className="text-xs text-gray-500 mt-2">
-          Try 🧵 🪡 🧶 🪆 🪔 🧺 👗 👜 🪢 🖼️ 🪘 � (mix for artisan crafts, dolls, clothes, etc)
+          Try 🧵 🪡 🧶 🪆 🪔 🧺 👗 👜 🪢 🖼️ 🪘 (mix for artisan crafts, dolls, clothes, etc)
         </span>
       </div>
 
