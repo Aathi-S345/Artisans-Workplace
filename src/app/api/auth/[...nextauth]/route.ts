@@ -1,8 +1,8 @@
-// In /app/api/auth/[...nextauth]/route.ts
+// src/app/api/auth/[...nextauth]/route.ts
 import NextAuth, { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-export const authOptions: AuthOptions = {
+const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'credentials',
@@ -11,15 +11,12 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        // This is where you would normally connect to your database to find a user.
-        // For this example, we will use mock data.
+        // 🧠 Replace with your database or API logic
 
         const adminEmail = "admin@example.com";
         const customerEmail = "customer@example.com";
 
-        // Check if the logging-in user is the designated admin
         if (credentials?.email === adminEmail) {
-          // If it is the admin, return a user object with the 'admin' role
           return { 
             id: "1", 
             name: "Admin User", 
@@ -27,25 +24,24 @@ export const authOptions: AuthOptions = {
             role: "admin" 
           };
         }
-        
-        // Example for a regular customer
+
         if (credentials?.email === customerEmail) {
           return { 
             id: "2", 
             name: "Customer User", 
             email: customerEmail, 
-            role: "customer" // Assign a different role
+            role: "customer" 
           };
         }
 
-        // If the user is not found, return null to deny login
         return null;
       }
     })
   ],
-  // ... your callbacks
+  // Optionally add callbacks, session, pages, etc.
 };
 
 const handler = NextAuth(authOptions);
 
+// ✅ Correct Next.js 13+ App Router export
 export { handler as GET, handler as POST };
