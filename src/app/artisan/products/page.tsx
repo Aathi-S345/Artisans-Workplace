@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useUIStore } from '@/store/uiStore';
 import Card from '@/components/UI/Card';
-import Button from '@/components/UI/Button';
+import { Button } from "@/components/UI/Button";
 import ProductForm from '@/components/Form/ProductForm';
 import { Product } from '@/types';
 

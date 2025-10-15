@@ -14,7 +14,7 @@ export default function Translator() {
 
     try {
       // Send the text to your Python Flask API
-      const response = await fetch('/api/translate', { 
+      fetch('https://your-api-name.onrender.com/translate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

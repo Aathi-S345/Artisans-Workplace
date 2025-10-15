@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Button from '../UI/Button';
+import { Button } from "@/components/UI/Button";
 import { Product } from '@/types'; // Import the shared type
 
 // This type represents only the data our form can edit.

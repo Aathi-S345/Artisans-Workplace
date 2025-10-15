@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '@/components/UI/Card';
-import Button from '@/components/UI/Button';
+import { Button } from "@/components/UI/Button";
+
 
 const trainingMaterials = [
   { id: 1, title: 'Product Photography Basics', type: 'Video' },

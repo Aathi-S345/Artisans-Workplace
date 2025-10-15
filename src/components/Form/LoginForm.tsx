@@ -1,8 +1,6 @@
-'use client';
-
 import React, { useState } from 'react';
 import { useAuthStore } from '@/store/authStore'; 
-import Button from '../UI/Button';
+import { Button } from "@/components/UI/Button";
 import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {

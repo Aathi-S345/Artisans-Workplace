@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '@/components/UI/Card';
-import Button from '@/components/UI/Button';
+import { Button } from "@/components/UI/Button";
+
 
 const pendingCertificates = [
   { id: 2, artisan: 'Jane Smith', name: 'Master Weaver Certification', date: '2023-05-01' },
