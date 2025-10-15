@@ -1,6 +1,6 @@
 // In src/app/admin/dashboard/page.tsx
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import AdminDashboardClient from '@/components/admin/AdminDashboardClient'; // Import the UI component
 
 export default async function AdminDashboardPage() {
