@@ -2,7 +2,7 @@
 import NextAuth, { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-const authOptions: AuthOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'credentials',
@@ -11,8 +11,6 @@ const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        // 🧠 Replace with your database or API logic
-
         const adminEmail = "admin@example.com";
         const customerEmail = "customer@example.com";
 
@@ -38,10 +36,9 @@ const authOptions: AuthOptions = {
       }
     })
   ],
-  // Optionally add callbacks, session, pages, etc.
 };
 
 const handler = NextAuth(authOptions);
 
-// ✅ Correct Next.js 13+ App Router export
+// ✅ App Router exports
 export { handler as GET, handler as POST };
