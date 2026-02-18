@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { useCart, CartItem } from '@/context/CartContext'
+import { useCart } from '@/context/CartContext'
+import type { CartItem } from '@/context/CartContext'
 
 export default function Checkout() {
   // CORRECTED: The context now provides `items`, not `cartItems`.
